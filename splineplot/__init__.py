@@ -17,6 +17,8 @@ def splineplot(
     degree: int = 3,
     alpha: int = 0,
     scatter: bool = True,
+    scatter_kws: dict[str, Any] = {},
+    line_kws: dict[str, Any] = {},
     **kwargs: Any,
 ) -> None:
     """Fit a spline and plot it with some data
@@ -33,6 +35,10 @@ def splineplot(
         Degree of the fitted spline polynomial
     alpha : int = 0
         Penalization term to prevent overfitting
+    scatter_kws : dict[str, Any] = {}
+        Additional keyword arguments to pass to `plt.scatter`
+    line_kws : dict[str, Any] = {}
+        Additional keyword arguments to pass to `plt.line`
     scatter : bool = True
         Plot the scatter data
     """
@@ -49,7 +55,7 @@ def splineplot(
     x_basis = np.linspace(x.min(), x.max(), 1000)
 
     if scatter:
-        ax.scatter(x, y, **kwargs)
+        ax.scatter(x, y, **kwargs, **scatter_kws)
 
     label = kwargs.pop("label", "")
 
@@ -57,5 +63,6 @@ def splineplot(
         x_basis,
         spline.transform(x_basis) @ res.params,
         label=f"{label} Spline".strip(),
+        **line_kws,
         **kwargs,
     )
