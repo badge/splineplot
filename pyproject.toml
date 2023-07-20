@@ -3,6 +3,8 @@ name = "splineplot"
 version = "0.3.0"
 description = ""
 authors = ["Matthew Badger <matt@branchenergy.com>"]
+homepage = "https://github.com/badge/splineplot"
+repository = "https://github.com/badge/splineplot"
 license = "Apache 2.0"
 readme = "README.md"
 
